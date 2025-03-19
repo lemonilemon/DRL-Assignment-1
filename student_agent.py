@@ -129,7 +129,7 @@ def get_action(obs):
                 station_check[i] = 0
 
     key = get_key(obs)
-    with open("q_table.pkl", "rb") as f:
+    with open("simple_q_table.pkl", "rb") as f:
         q_table = pickle.load(f)
     act = np.argmax(q_table[key])
 
