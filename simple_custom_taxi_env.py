@@ -75,7 +75,7 @@ class SimpleTaxiEnv:
         self.obstacles = set()
         for y in range(0, self.grid_size):
             for x in range(0, self.grid_size):
-                if random.random() < 0.2:
+                if random.random() < 0.15:
                     self.obstacles.add((x, y))
 
         def select_non_adjacent_stations(available_stations, num_stations):
@@ -142,7 +142,7 @@ class SimpleTaxiEnv:
                 if self.taxi_pos == self.passenger_loc and not self.passenger_picked_up:
                     self.passenger_picked_up = True
                     self.passenger_loc = self.taxi_pos
-                    reward += 500
+                    reward += 200
                 else:
                     reward = -10
             elif action == 5:  # DROPOFF
@@ -151,7 +151,7 @@ class SimpleTaxiEnv:
                         reward += 500
                         return self.get_state(), reward - 0.1, True, {}
                     else:
-                        reward -= 1000
+                        reward -= 500
                     self.passenger_picked_up = False
                     self.passenger_loc = self.taxi_pos
                 else:
@@ -358,7 +358,7 @@ def run_agent(agent_file, env_config, render=False):
 
 
 if __name__ == "__main__":
-    env_config = {"grid_size": 10, "fuel_limit": 500}
+    env_config = {"grid_size": random.randint(5, 15), "fuel_limit": 5000}
 
     agent_score = run_agent("student_agent.py", env_config, render=True)
     print(f"Final Score: {agent_score}")
