@@ -151,6 +151,7 @@ class Get_Key:
             obstacle_west,
             int(passenger_pick_available),
             int(passenger_drop_available),
+            self.last_action,
         )
         # return (
         #     stations[0][0],  # 3
